@@ -1,0 +1,2 @@
+Utworzyæ instancjê bazy danych:
+	sqllocaldb create EodRecruitmentDb -s

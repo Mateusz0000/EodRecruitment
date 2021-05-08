@@ -5,6 +5,13 @@ VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ERP.Api", "ERP.Api\ERP.Api.csproj", "{BA8D403D-4FDB-4E94-A57C-09DEDDD4491C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EOD.Synchronizer", "EOD.Synchronizer\EOD.Synchronizer.csproj", "{5EC46D4A-76D8-4C6E-8129-F60C23F40CE3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Info", "Info", "{6B8B0050-1512-4787-A798-9E80738AB5BD}"
+	ProjectSection(SolutionItems) = preProject
+		developerInfo.txt = developerInfo.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +22,10 @@ Global
 		{BA8D403D-4FDB-4E94-A57C-09DEDDD4491C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA8D403D-4FDB-4E94-A57C-09DEDDD4491C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA8D403D-4FDB-4E94-A57C-09DEDDD4491C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5EC46D4A-76D8-4C6E-8129-F60C23F40CE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EC46D4A-76D8-4C6E-8129-F60C23F40CE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EC46D4A-76D8-4C6E-8129-F60C23F40CE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EC46D4A-76D8-4C6E-8129-F60C23F40CE3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
