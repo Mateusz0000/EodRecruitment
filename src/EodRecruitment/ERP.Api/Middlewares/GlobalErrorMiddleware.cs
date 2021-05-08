@@ -25,6 +25,9 @@ namespace ERP.Api.Middlewares
             catch (Exception ex)
             {
                 var response = context.Response;
+                string errorMessage = ex?.Message;
+                response.ContentType = "application/json";
+
 
                 switch (ex)
                 {
@@ -33,10 +36,11 @@ namespace ERP.Api.Middlewares
                         break;
                     default:
                         response.StatusCode = StatusCodes.Status500InternalServerError;
+                        errorMessage = "Server Error";
                         break;
                 }
 
-                var result = JsonSerializer.Serialize(ex?.Message);
+                var result = JsonSerializer.Serialize(errorMessage);
                 await response.WriteAsync(result);
             }
         }
