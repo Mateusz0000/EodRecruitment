@@ -25,6 +25,7 @@ namespace ERP.Api.Controllers
         [HttpGet]
         [SwaggerOperation("Pobierz dane kontrahentów na dany dzień", "Metoda umożliwiająca pobranie danych kontrahentów na wskazany dzień w postaci listy.")]
         [SwaggerResponse(StatusCodes.Status200OK, "Dane kontrahentów", typeof(List<ContractorDataDto>))]
+        [SwaggerResponse(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> Get([SwaggerParameter("Dzień, na który pobrać dane")] DateTime date)
         {
             var contractorList = _dataService.GetContractorListByDate(date);
