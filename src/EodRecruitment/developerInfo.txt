@@ -1,2 +1,6 @@
 Utworzyæ instancjê bazy danych:
 	sqllocaldb create EodRecruitmentDb -s
+
+	Enable-Migrations
+	Add-Migration InitialMigration
+	Update-Database

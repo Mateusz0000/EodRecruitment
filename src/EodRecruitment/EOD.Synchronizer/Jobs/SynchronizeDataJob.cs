@@ -1,4 +1,5 @@
-﻿using Quartz;
+﻿using EOD.Synchronizer.Repository;
+using Quartz;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,12 +11,16 @@ namespace EOD.Synchronizer.Jobs
     [DisallowConcurrentExecution]
     public class SynchronizeDataJob : IJob
     {
-        public async Task Execute(IJobExecutionContext context)
+        //private readonly IEodDbRepo _eodDbRepo;
+
+        //public SynchronizeDataJob(IEodDbRepo eodDbRepo)
+        //{
+        //    _eodDbRepo = eodDbRepo ?? throw new ArgumentNullException(nameof(eodDbRepo));
+        //}
+
+        public void Execute(IJobExecutionContext context)
         {
-            await Task.Run(() =>
-            {
-                Console.WriteLine($"Uruchomiono joba - {DateTime.Now}");
-            });
+            Console.WriteLine($"Uruchomiono joba - {DateTime.Now}");
         }
     }
 }
