@@ -104,6 +104,7 @@
     <Compile Include="Infrastructure\IEodDbContextFactory.cs" />
     <Compile Include="Infrastructure\Tables\Contractors.cs" />
     <Compile Include="Installer.cs" />
+    <Compile Include="Jobs\JobFactory.cs" />
     <Compile Include="Jobs\SynchronizeDataJob.cs" />
     <Compile Include="Migrations\202105082038448_InitialMigration.cs" />
     <Compile Include="Migrations\202105082038448_InitialMigration.designer.cs">

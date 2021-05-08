@@ -1,17 +1,30 @@
 ﻿using EOD.Synchronizer.Infrastructure;
+using EOD.Synchronizer.Jobs;
 using EOD.Synchronizer.Repository;
+using Ninject;
 using Ninject.Modules;
 using Quartz;
+using Quartz.Impl;
 
 namespace EOD.Synchronizer
 {
-    public class Installer : NinjectModule
+    public static class Installer
     {
-        public override void Load()
+        public static IKernel InitializeKernel()
         {
-            Bind<IEodDbContextFactory>().To<EodDbContextFactory>().InTransientScope();
-            Bind<IEodDbRepo>().To<EodDbRepo>().InTransientScope();
-            Bind<IJob>().ToSelf().InTransientScope();
+            var kernel = new StandardKernel();
+
+            kernel.Bind<IScheduler>().ToMethod(x =>
+            {
+                var sched = new StdSchedulerFactory().GetScheduler();
+                sched.JobFactory = new JobFactory(kernel);
+                return sched;
+            });
+            kernel.Bind<IEodDbContextFactory>().To<EodDbContextFactory>().InTransientScope();
+            kernel.Bind<IEodDbRepo>().To<EodDbRepo>().InTransientScope();
+            kernel.Bind<IJob>().ToSelf().InTransientScope();
+
+            return kernel;
         }
     }
 }

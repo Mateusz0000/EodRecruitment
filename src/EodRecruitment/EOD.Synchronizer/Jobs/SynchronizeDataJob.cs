@@ -11,12 +11,12 @@ namespace EOD.Synchronizer.Jobs
     [DisallowConcurrentExecution]
     public class SynchronizeDataJob : IJob
     {
-        //private readonly IEodDbRepo _eodDbRepo;
+        private readonly IEodDbRepo _eodDbRepo;
 
-        //public SynchronizeDataJob(IEodDbRepo eodDbRepo)
-        //{
-        //    _eodDbRepo = eodDbRepo ?? throw new ArgumentNullException(nameof(eodDbRepo));
-        //}
+        public SynchronizeDataJob(IEodDbRepo eodDbRepo)
+        {
+            _eodDbRepo = eodDbRepo ?? throw new ArgumentNullException(nameof(eodDbRepo));
+        }
 
         public void Execute(IJobExecutionContext context)
         {
