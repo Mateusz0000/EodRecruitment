@@ -108,6 +108,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DateList.cs" />
     <Compile Include="Dtos\ContractorDataDto.cs" />
     <Compile Include="Infrastructure\EodDbContext.cs" />
     <Compile Include="Infrastructure\EodDbContextFactory.cs" />

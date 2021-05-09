@@ -26,12 +26,19 @@ namespace EOD.Synchronizer.Jobs
 
         public void Execute(IJobExecutionContext context)
         {
-            Console.WriteLine($"Uruchomiono joba - {DateTime.Now}");
-
             try
             {
+                if (DateList.Dates.Count == 0)
+                {
+                    Console.WriteLine();
+                    return;
+                }
+
+                var today = DateList.Dates[0];
+                Console.WriteLine($"Uruchomiono joba - {DateTime.Now} na dzień {today}");
+
                 _httpClient.BaseAddress = new Uri("https://localhost:44387/api/Contractor");
-                HttpResponseMessage response = _httpClient.GetAsync("?date=2021-05-06").Result;
+                HttpResponseMessage response = _httpClient.GetAsync($"?date={today}").Result;
                 response.EnsureSuccessStatusCode();
                 string responseBody = response.Content.ReadAsStringAsync().Result;
                 var contractorsList = JsonConvert.DeserializeObject<List<ContractorDataDto>>(responseBody);
@@ -48,13 +55,18 @@ namespace EOD.Synchronizer.Jobs
                     }
                     else
                     {
-                        //porównaj
+                        existedContractor.UpdateData(contractor);
+                        _eodDbRepo.UpdateContractor(existedContractor);
                     }
                 }
+
+                DateList.Dates.RemoveAt(0);
+                Console.WriteLine($"Zakończono działanie joba - {DateTime.Now} na dzień {today}");
             }
             catch (HttpRequestException e)
             {
                 Console.WriteLine($"Message :{e.Message} ");
+                DateList.Dates.RemoveAt(0);
             }
         }
     }

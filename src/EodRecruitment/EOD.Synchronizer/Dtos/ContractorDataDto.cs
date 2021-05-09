@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace EOD.Synchronizer.Dtos
 {
-    internal class ContractorDataDto
+    public class ContractorDataDto
     {
         public Guid Id { get; set; }
         [StringLength(10)]

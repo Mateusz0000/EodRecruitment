@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EOD.Synchronizer.Dtos;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -31,5 +32,49 @@ namespace EOD.Synchronizer.Infrastructure.Tables
         [StringLength(100)]
         [Column("Numer")]
         public string Number { get; set; } // #Varchar(100)
+
+        public void UpdateData(ContractorDataDto changedContractor)
+        {
+            bool ifChanged = false;
+
+            if(Name != changedContractor.Name)
+            {
+                Name = changedContractor.Name;
+                ifChanged = true;
+            }
+
+            if (NipNumber != changedContractor.NipNumber)
+            {
+                NipNumber = changedContractor.NipNumber;
+                ifChanged = true;
+            }
+
+            if (City != changedContractor.City)
+            {
+                City = changedContractor.City;
+                ifChanged = true;
+            }
+
+            if (PostalCode != changedContractor.PostalCode)
+            {
+                PostalCode = changedContractor.PostalCode;
+                ifChanged = true;
+            }
+
+            if (Street != changedContractor.Street)
+            {
+                Street = changedContractor.Street;
+                ifChanged = true;
+            }
+
+            if (Number != changedContractor.Number)
+            {
+                Number = changedContractor.Number;
+                ifChanged = true;
+            }
+
+            if (ifChanged)
+                MarkAsUpdated("KontoSystemowe");
+        }
     }
 }

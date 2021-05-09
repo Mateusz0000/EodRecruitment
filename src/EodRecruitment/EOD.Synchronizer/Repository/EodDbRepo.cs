@@ -2,6 +2,8 @@
 using EOD.Synchronizer.Infrastructure.Tables;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,8 +23,6 @@ namespace EOD.Synchronizer.Repository
         {
             try
             {
-                newContractor.Created = DateTime.Now;
-
                 using (var ctx = _dbContextFactory.Create())
                 {
                     ctx.Contractors.Add(newContractor);
@@ -53,7 +53,11 @@ namespace EOD.Synchronizer.Repository
 
         public void UpdateContractor(Contractor updatedContractor)
         {
-            throw new NotImplementedException();
+            using(var ctx = _dbContextFactory.Create())
+            {
+                ctx.Contractors.AddOrUpdate(updatedContractor);
+                ctx.SaveChanges();
+            }
         }
     }
 }
