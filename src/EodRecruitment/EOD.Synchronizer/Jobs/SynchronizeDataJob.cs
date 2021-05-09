@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using Quartz;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Net.Http;
 
 namespace EOD.Synchronizer.Jobs
@@ -35,9 +36,11 @@ namespace EOD.Synchronizer.Jobs
                 }
 
                 var today = DateList.Dates[0];
-                Console.WriteLine($"Uruchomiono joba - {DateTime.Now} na dzień {today}");
+                string apiBaseAddress = ConfigurationManager.AppSettings["ErpApiEndpoint"];
 
-                _httpClient.BaseAddress = new Uri("https://localhost:44387/api/Contractor");
+                Console.WriteLine($"Uruchomiono joba - {DateTime.Now} na dzień {today}, żądanie do {apiBaseAddress}");
+
+                _httpClient.BaseAddress = new Uri(apiBaseAddress);
                 HttpResponseMessage response = _httpClient.GetAsync($"?date={today}").Result;
 
                 response.EnsureSuccessStatusCode();
