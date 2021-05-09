@@ -41,7 +41,7 @@ namespace ERP.Api.Mock
 
                 if (numberOfContractorsToChange > 0)
                 {
-                    ChangeRecords(numberOfContractorsToChange, ref _may7thContractors);
+                    ChangeRecords(numberOfContractorsToChange, _may6thContractors.Count, ref _may7thContractors);
                 }
 
                 _may7thContractors.AddRange(newData);
@@ -59,7 +59,7 @@ namespace ERP.Api.Mock
 
                 if (numberOfContractorsToChange > 0)
                 {
-                    ChangeRecords(numberOfContractorsToChange, ref _may8thContractors);
+                    ChangeRecords(numberOfContractorsToChange, _may7thContractors.Count, ref _may8thContractors);
                 }
 
                 _may8thContractors.AddRange(newData);
@@ -72,13 +72,13 @@ namespace ERP.Api.Mock
         private List<ContractorDataDto> GetNewMockedData(int numberOfNewContractors)
             => _fixture.CreateMany<ContractorDataDto>(numberOfNewContractors).ToList();
 
-        private void ChangeRecords(int numberOfContractorsToChange, ref List<ContractorDataDto> changedContractorsList)
+        private void ChangeRecords(int numberOfContractorsToChange, int alreadyGeneratedItems, ref List<ContractorDataDto> changedContractorsList)
         {
             var random = new Random();
 
             for (int i = 0; i < numberOfContractorsToChange; i++)
             {
-                var itemToChange = random.Next(0, _may6thContractors.Count - 1);
+                var itemToChange = random.Next(0, alreadyGeneratedItems - 1);
                 changedContractorsList[itemToChange].Name = $"Nowa nazwa kontrahenta-{i}";
             }
         }
