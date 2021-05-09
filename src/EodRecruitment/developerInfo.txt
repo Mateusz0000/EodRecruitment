@@ -1,6 +1,7 @@
-Utworzyæ instancjê bazy danych:
+Utworzyæ instancjê bazy danych za pomoc¹ systemowej linii komend:
 	sqllocaldb create EodRecruitmentDb -s
 
+Wykonaæ komendy tworz¹ce strukturê bazy danych:
 	Enable-Migrations
 	Add-Migration InitialMigration
-	Update-Database
+	Update-Database -ProjectName EOD.Synchronizer
