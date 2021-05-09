@@ -4,6 +4,7 @@ using Ninject;
 using Quartz;
 using Quartz.Impl;
 using System;
+using System.Configuration;
 using System.Reflection;
 
 namespace EOD.Synchronizer.Service
@@ -29,12 +30,12 @@ namespace EOD.Synchronizer.Service
             IJobDetail job = JobBuilder.Create<SynchronizeDataJob>()
                 .WithIdentity("SynchronizeDataJob", "SynchronizerGroup")
                 .Build();
+
+            string cronSchedule = ConfigurationManager.AppSettings["QuartzCron"];
             ITrigger trigger = TriggerBuilder.Create()
                 .WithIdentity("SynchronizerTrigger", "SynchronizerGroup")
-                .StartNow()
-                .WithSimpleSchedule(x => x
-                    .WithIntervalInSeconds(10)
-                    .RepeatForever())
+                .StartAt(DateTime.Now.AddSeconds(15))
+                .WithCronSchedule(cronSchedule)
                 .Build();
 
             _scheduler.ScheduleJob(job, trigger);
