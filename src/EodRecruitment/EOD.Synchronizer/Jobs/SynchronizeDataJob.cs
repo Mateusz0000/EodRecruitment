@@ -30,7 +30,7 @@ namespace EOD.Synchronizer.Jobs
             {
                 if (DateList.Dates.Count == 0)
                 {
-                    Console.WriteLine();
+                    Console.WriteLine("Brak terminów do uruchomienia joba :)");
                     return;
                 }
 
@@ -39,8 +39,13 @@ namespace EOD.Synchronizer.Jobs
 
                 _httpClient.BaseAddress = new Uri("https://localhost:44387/api/Contractor");
                 HttpResponseMessage response = _httpClient.GetAsync($"?date={today}").Result;
-                response.EnsureSuccessStatusCode();
                 string responseBody = response.Content.ReadAsStringAsync().Result;
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    throw new HttpRequestException(responseBody);
+                }
+
                 var contractorsList = JsonConvert.DeserializeObject<List<ContractorDataDto>>(responseBody);
 
                 foreach (var contractor in contractorsList)
