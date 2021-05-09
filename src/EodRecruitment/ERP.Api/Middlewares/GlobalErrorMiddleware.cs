@@ -1,8 +1,5 @@
-﻿using ERP.Api.Exceptions;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 
@@ -32,9 +29,6 @@ namespace ERP.Api.Middlewares
 
                 switch (ex)
                 {
-                    case EmptyContractorsListException e:
-                        response.StatusCode = StatusCodes.Status404NotFound;
-                        break;
                     case ApplicationException e:
                         response.StatusCode = StatusCodes.Status400BadRequest;
                         break;

@@ -39,13 +39,10 @@ namespace EOD.Synchronizer.Jobs
 
                 _httpClient.BaseAddress = new Uri("https://localhost:44387/api/Contractor");
                 HttpResponseMessage response = _httpClient.GetAsync($"?date={today}").Result;
+
+                response.EnsureSuccessStatusCode();
+
                 string responseBody = response.Content.ReadAsStringAsync().Result;
-
-                if (!response.IsSuccessStatusCode)
-                {
-                    throw new HttpRequestException(responseBody);
-                }
-
                 var contractorsList = JsonConvert.DeserializeObject<List<ContractorDataDto>>(responseBody);
 
                 foreach (var contractor in contractorsList)
@@ -71,7 +68,6 @@ namespace EOD.Synchronizer.Jobs
             catch (HttpRequestException e)
             {
                 Console.WriteLine($"Message :{e.Message} ");
-                DateList.Dates.RemoveAt(0);
             }
         }
     }

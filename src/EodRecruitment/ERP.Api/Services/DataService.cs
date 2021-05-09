@@ -1,5 +1,4 @@
 ﻿using ERP.Api.Dtos;
-using ERP.Api.Exceptions;
 using ERP.Api.Mock;
 using System;
 using System.Collections.Generic;
@@ -35,7 +34,7 @@ namespace ERP.Api.Services
                     break;
 
                 default:
-                    throw new EmptyContractorsListException("Brak danych kontrahentów na dany dzień.");
+                    break;
             }
 
             return gotData;
