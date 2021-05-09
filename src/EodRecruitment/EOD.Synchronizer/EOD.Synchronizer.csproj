@@ -57,6 +57,9 @@
     <Reference Include="Quartz, Version=2.6.2.0, Culture=neutral, PublicKeyToken=f6b8c98a402cc8a4, processorArchitecture=MSIL">
       <HintPath>..\packages\Quartz.2.6.2\lib\net40\Quartz.dll</HintPath>
     </Reference>
+    <Reference Include="RestEase, Version=1.4.10.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestEase.1.4.10\lib\net45\RestEase.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
@@ -99,6 +102,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="External\ErpApi.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ErpApi.json</DependentUpon>
+    </Compile>
     <Compile Include="Infrastructure\EodDbContext.cs" />
     <Compile Include="Infrastructure\EodDbContextFactory.cs" />
     <Compile Include="Infrastructure\IEodDbContextFactory.cs" />
@@ -119,7 +127,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="External\json1.json" />
+    <None Include="External\ErpApi.json">
+      <Generator>RestEaseCodeGenerator</Generator>
+      <LastGenOutput>ErpApi.cs</LastGenOutput>
+    </None>
+    <None Include="External\ExternalApiDefinition.json" />
     <None Include="job_scheduling_data_2_0.xsd">
       <SubType>Designer</SubType>
     </None>
