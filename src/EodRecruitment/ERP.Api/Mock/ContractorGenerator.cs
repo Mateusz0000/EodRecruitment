@@ -70,7 +70,7 @@ namespace ERP.Api.Mock
 
         #region private methods
         private List<ContractorDataDto> GetNewMockedData(int numberOfNewContractors)
-            =>  _fixture.CreateMany<ContractorDataDto>(numberOfNewContractors).ToList();
+            => _fixture.CreateMany<ContractorDataDto>(numberOfNewContractors).ToList();
 
         private void ChangeRecords(int numberOfContractorsToChange, ref List<ContractorDataDto> changedContractorsList)
         {
@@ -83,6 +83,6 @@ namespace ERP.Api.Mock
             }
         }
 
-#endregion
+        #endregion
     }
 }

@@ -12,7 +12,9 @@ namespace EOD.Synchronizer.Infrastructure
 
         public EodDbContext Create()
         {
-            return new EodDbContext();
+            string connectionString = ConfigurationManager.ConnectionStrings["EodDb"].ConnectionString;
+
+            return new EodDbContext(connectionString);
         }
     }
 }

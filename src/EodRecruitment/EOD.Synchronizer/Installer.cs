@@ -1,4 +1,6 @@
-﻿using EOD.Synchronizer.Infrastructure;
+﻿using AutoMapper;
+using EOD.Synchronizer.Infrastructure;
+using EOD.Synchronizer.Infrastructure.MappingProfiles;
 using EOD.Synchronizer.Jobs;
 using EOD.Synchronizer.Repository;
 using Ninject;
@@ -24,7 +26,23 @@ namespace EOD.Synchronizer
             kernel.Bind<IEodDbRepo>().To<EodDbRepo>().InTransientScope();
             kernel.Bind<IJob>().ToSelf().InTransientScope();
 
+            var mapperConfiguration = CreateConfiguration();
+            kernel.Bind<IMapper>().ToMethod(ctx =>
+            {
+                return new Mapper(mapperConfiguration, type => kernel.Get(type));
+            });
+
             return kernel;
+        }
+
+        private static MapperConfiguration CreateConfiguration()
+        {
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new MappingProfile());
+            });
+
+            return config;
         }
     }
 }

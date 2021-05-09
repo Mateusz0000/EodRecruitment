@@ -9,12 +9,12 @@ namespace EOD.Synchronizer.Infrastructure
 {
     internal class EodDbContext : DbContext
     {
-        public EodDbContext() : 
-            base("name=EodDb")
+        public EodDbContext(string connectionString) : 
+            base(connectionString)
         {
 
         }
 
-        DbSet<Contractor> Contractors { get; set; }
+        public DbSet<Contractor> Contractors { get; set; }
     }
 }

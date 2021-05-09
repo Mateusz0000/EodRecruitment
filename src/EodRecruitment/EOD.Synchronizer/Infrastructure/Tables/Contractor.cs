@@ -27,17 +27,23 @@ namespace EOD.Synchronizer.Infrastructure.Tables
 
         public string Zrodlo { get; set; } // #źródło wartość stała dla systemu z którego pobierane są dane
         public Guid IdentyfikatorZrodla { get; set; } // #identyfikator unikatowy dla systemu z którego pobierane są dane
-        [StringLength(10)] 
-        public string NIP { get; set; }// #Varchar(10)
+        [StringLength(10)]
+        [Column("NIP")]
+        public string NipNumber { get; set; }// #Varchar(10)
         [StringLength(450)] 
-        public string Nazwa { get; set; }// #Varchar(450)
-        [StringLength(450)] 
-        public string Miasto { get; set; }// #Varchar(450)
-        [StringLength(450)] 
-        public string KodPocztowy { get; set; }// #Varchar(450)
-        [StringLength(450)] 
-        public string Ulica { get; set; }// #Varchar(450)
-        [StringLength(100)] 
-        public string Numer { get; set; } // #Varchar(100)
+        [Column("Nazwa")]
+        public string Name { get; set; }// #Varchar(450)
+        [StringLength(450)]
+        [Column("Miasto")]
+        public string City { get; set; }// #Varchar(450)
+        [StringLength(450)]
+        [Column("KodPocztowy")]
+        public string PostalCode { get; set; }// #Varchar(450)
+        [StringLength(450)]
+        [Column("Ulica")]
+        public string Street { get; set; }// #Varchar(450)
+        [StringLength(100)]
+        [Column("Numer")]
+        public string Number { get; set; } // #Varchar(100)
     }
 }

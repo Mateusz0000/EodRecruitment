@@ -1,7 +1,8 @@
-﻿namespace EOD.Synchronizer.Infrastructure
+﻿using System.Data.Entity.Infrastructure;
+
+namespace EOD.Synchronizer.Infrastructure
 {
-    internal interface IEodDbContextFactory
+    internal interface IEodDbContextFactory : IDbContextFactory<EodDbContext>
     {
-        EodDbContext Create();
     }
 }

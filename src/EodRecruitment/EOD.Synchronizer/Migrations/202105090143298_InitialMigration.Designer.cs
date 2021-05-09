@@ -13,7 +13,7 @@ namespace EOD.Synchronizer.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202105082038448_InitialMigration"; }
+            get { return "202105090143298_InitialMigration"; }
         }
         
         string IMigrationMetadata.Source

@@ -29,7 +29,7 @@ namespace EOD.Synchronizer.External.Models
 {
     public class ContractorDataDto
     {
-        public string Id { get; set; }
+        public Guid Id { get; set; }
 
         public string NipNumber { get; set; }
 

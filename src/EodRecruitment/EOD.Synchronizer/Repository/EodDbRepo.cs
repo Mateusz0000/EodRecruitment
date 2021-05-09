@@ -19,12 +19,36 @@ namespace EOD.Synchronizer.Repository
 
         public void AddNewContractor(Contractor newContractor)
         {
-            throw new NotImplementedException();
+            try
+            {
+                newContractor.Created = DateTime.Now;
+
+                using (var ctx = _dbContextFactory.Create())
+                {
+                    ctx.Contractors.Add(newContractor);
+                    ctx.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         public Contractor GetContractorById(Guid contractorId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (var ctx = _dbContextFactory.Create())
+                {
+                    return ctx.Contractors.SingleOrDefault(c => c.Id == contractorId);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw ex;
+            }
         }
 
         public void UpdateContractor(Contractor updatedContractor)
