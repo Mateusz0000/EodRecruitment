@@ -108,11 +108,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="External\ErpApi.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ErpApi.json</DependentUpon>
-    </Compile>
     <Compile Include="Infrastructure\EodDbContext.cs" />
     <Compile Include="Infrastructure\EodDbContextFactory.cs" />
     <Compile Include="Infrastructure\IEodDbContextFactory.cs" />
@@ -134,10 +129,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="External\ErpApi.json">
-      <Generator>RestEaseCodeGenerator</Generator>
-      <LastGenOutput>ErpApi.cs</LastGenOutput>
-    </None>
     <None Include="job_scheduling_data_2_0.xsd">
       <SubType>Designer</SubType>
     </None>
