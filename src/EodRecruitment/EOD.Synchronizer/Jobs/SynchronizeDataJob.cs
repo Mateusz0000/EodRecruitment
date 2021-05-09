@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
-using EOD.Synchronizer.External.Api;
-using EOD.Synchronizer.External.Models;
+using EOD.Synchronizer.Dtos;
 using EOD.Synchronizer.Infrastructure.Tables;
 using EOD.Synchronizer.Repository;
 using Newtonsoft.Json;
@@ -16,7 +15,6 @@ namespace EOD.Synchronizer.Jobs
     {
         private readonly IEodDbRepo _eodDbRepo;
         private readonly IMapper _mapper;
-        private readonly IErpApiApi _erpApiClient;
         private HttpClient _httpClient;
 
         public SynchronizeDataJob(IEodDbRepo eodDbRepo, IMapper mapper)
@@ -45,14 +43,18 @@ namespace EOD.Synchronizer.Jobs
                     if (existedContractor == null)
                     {
                         var newContractor = _mapper.Map<Contractor>(contractor);
+                        newContractor.MarkAsNew("KontoSystemowe");
                         _eodDbRepo.AddNewContractor(newContractor);
+                    }
+                    else
+                    {
+                        //porównaj
                     }
                 }
             }
             catch (HttpRequestException e)
             {
-                Console.WriteLine("\nException Caught!");
-                Console.WriteLine("Message :{0} ", e.Message);
+                Console.WriteLine($"Message :{e.Message} ");
             }
         }
     }

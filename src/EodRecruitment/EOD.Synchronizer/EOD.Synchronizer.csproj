@@ -108,10 +108,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dtos\ContractorDataDto.cs" />
     <Compile Include="Infrastructure\EodDbContext.cs" />
     <Compile Include="Infrastructure\EodDbContextFactory.cs" />
     <Compile Include="Infrastructure\IEodDbContextFactory.cs" />
     <Compile Include="Infrastructure\MappingProfiles\MappingProfile.cs" />
+    <Compile Include="Infrastructure\Tables\AuditRecord.cs" />
     <Compile Include="Infrastructure\Tables\Contractor.cs" />
     <Compile Include="Installer.cs" />
     <Compile Include="Jobs\JobFactory.cs" />
@@ -139,6 +141,7 @@
       <DependentUpon>202105090143298_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
